@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="widthPx"
+            type="float" />
+
+        <variable
+            name="itemCount"
+            type="int" />
+
+        <variable
+            name="home"
+            type="com.example.fampayassignmentapp.presentation.home.HomeFragment" />
+
+        <variable
+            name="card"
+            type="com.example.fampayassignmentapp.domain.models.CardItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_width="@{widthPx/itemCount}">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_outer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            card_view:cardBackgroundColor="@android:color/transparent"
+            card_view:cardCornerRadius="0dp"
+            card_view:cardElevation="0dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_inner_main"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:onClick="@{() -> home.onCardClick(card.url, card.isDisabled())}"
+                app:backgroundCardColor="@{card.bgColor}"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardElevation="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/item_hc1_base"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/item_hc1_icon_card"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10sp"
+                        card_view:cardCornerRadius="40dp">
+
+                        <ImageView
+                            android:id="@+id/item_hc1_icon_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/image_icon"
+                            android:scaleType="centerCrop"
+                            app:aspect_ratio="@{card.icon.aspectRatio}"
+                            app:imageURL="@{card.icon.imageUrl}" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toEndOf="@id/item_hc1_icon_card"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/item_hc1_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@{card.title}"
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            app:alignment="@{card.formattedContent.align}"
+                            app:entities="@{card.formattedContent.entities}"
+                            app:home="@{home}"
+                            app:isDisabled="@{card.isDisabled}"
+                            app:original_text="@{card.title}" />
+
+                        <TextView
+                            android:id="@+id/item_hc1_subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="@{card.name}"
+                            android:textColor="#B91B1B1E"
+                            android:textSize="14sp"
+
+                            />
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

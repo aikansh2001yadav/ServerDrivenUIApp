@@ -1,111 +1,104 @@
-# FamPay-Android-Assignment
-Assignment for applications to Android Developer roles at FamPay
+# FampayAssignmentApp
+## Description
 
-⏰ **Deadline** : 48 Hours from receiving assignment
+Assignment for applications to Android Developer roles at FamPay. It uses clean MVVM Architecture with modern libraries like epoxy, retrofit, glide, hilt and lottie. Dynamic view are inflated using epoxy recycler view with databinding enabled. Network calls are made using retrofit library. Glide is used for image loading. Hilt is used for dependency injection and lottie is used for animation.
 
-# Details
+## Application Screenshots
 
-- Develop a standalone container, that displays a list of `Contextual Cards`
-    - A `Contextual Card` is used to refer to a view that is rendered using json from an API
-    - These views are dynamic and their properties like images, color, texts, buttons (CTAs) etc. can be changed from backend at anytime.
-- This container should work completely independently of everything else, such that, we can add this to container to any fragment/activity and it should work. (Plug-and-Play component)
-- Your app should render contextual cards in a list based on the API response that you get from this [API](https://run.mocky.io/v3/fefcfbeb-5c12-4722-94ad-b8f92caad1ad)
-- The design specifications for the different design types can be referenced from design specified [here.](https://www.figma.com/file/AvK2BRGwMTv4kQab5ymJ0K/AAL3-Android-assignment-Design-Specs) (To access and download the assets please login into Figma)
-- The design linked is only for reference for different types of design types of cards. Actual response from API will render different results.
+* Home Screen:
 
-`Note` : The FamPay logo at the top will not be a part of the container, its a part of the activity/fragment that encloses the container. The Container will only contain list of contextual cards
+   <p align="center">
+     <img src = "screenshots/img_home_bg.png" width="200" height="400"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+     <img src = "screenshots/img_home_remaining_bg.png" width="200" height="400">
+   </p>
+* HC3 Card Long Pressed:
 
-## **Expected Deliverables:**
-- All deeplinks (card, CTAs, Formatted Text entities) should be handled.
-    - In the API, almost every component has its own url/deeplink that is used to trigger action on click.
-- On long press of Big Display Card (HC3), it should slide to the right and display action buttons as per the design
-    - On tapping "remind later" action on a card, it should be removed from the display. This card should be shown on the next app start.
-    - On tapping "dismiss now" action, it should be removed from the display. This card should never be visible again.
-- Implement swipe down to refresh feature
-- Handle loading and error states
-- Write structured code with flexible and reusable components
-- Design should match as closely as possible to the one on Figma
-- We will test how the submission performs for different API responses, which will include different texts, colors, gradients, types, ctas, images etc. that will cover all the possible cases.
-    - How well the submission performs across all these cases will be noted, so try to consider all the other cases, not included the mock API, that might exist based on the API response schema.
+   <p align="center">
+  <img src = "screenshots/img_hc3_long_pressed.png" width="200" height="400"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  </p>
+  
+* HC3 Remind Later Pressed: On tapping "remind later" action on a card, it should be removed from the display. This card should be shown on the next app start.
 
-## Schema
-- **Formatted Text**
-    - `text` - text to parse
-        
-        e.g. `"Hello {}, you look lonely! Why don't you do {}!"` 
-        
-        the two `{}`s each represent an entity and would be substituted with attributed text, constructed from `entities`. 
-        
-    - `entities` an ordered array of **[Entity](https://www.notion.so/AAL2-Android-Assignment-44898d1d62a44a0ead628883befed5c7)**
-- **Entity**
-    - `text` - text to display in place of `{}`
-    - `color`  - optional, hex color code for the label of this entity
-    - `url` - optional, the URL/URI to trigger upon clicking this entity's label
-    - `font_style` - optional, can take values such as `underline` and `italic`
-- **Card**
-    - `name` - name of the card (for reference only, not used in the UI
-    - `formatted_title` - optional, a title, refer to **Formatted Text** for structure
-    - `title` - optional, a fallback title in case the `formatted_title` cannot be parsed
-    - `formatted_description` - optional, a description, refer to **Formatted Text** for structure
-    - `description` - optional, a fallback description in case the `formatted_description` cannot be parsed
-    - `icon` - optional, refer to **Card Image** for type ****
-    - `url` - optional, the URL/URI deep link to open on clicking anywhere in the card (except for a URL-attributed-entity)
-    - `bg_image` - optional, refer to **Card Image** for type
-    - `bg_color` - optional, hex code for background color
-    - `bg_gradient` - optional, refer to **Gradient** for type
-    - `cta` - an array of objects of type **Call to Action** for type
-- **Call to Action (CTA)**
-    - `text` - text of the button
-    - `bg_color` - optional, hex code of background color of the button
-    - `url` - optional, the url/uri scheme to trigger upon button click
-    - `text_color` - optional, text color of the button
-- **Gradient**
-    - `colors` - an array of hash-prefixed ARGB color hex codes
-    - `angle` - an angle (assume 0 if `null`) for the gradient
-- **Card Image**
-    - `image_type` - possible types - `asset` and `external`
-    - `asset_type` - optional, a string containing the name of the asset name (present only if `image_type` is `asset`)
-    - `image_url` - optional, the url to the image if type is `external`
-- **Card Group**
-    
-    A card group is a **row** of card(s). 
-    
-    - `design_type` refer to the enum below. You can take a look at the [design](https://www.figma.com/file/9chjT8NkzIvXRhbQcuScow/Android-assignment-Design-Specs?node-id=0%3A1) to find designs for each case.
-        
-        ```java
-        public enum DesignTypes {
-            SMALL_DISPLAY_CARD("HC1"),
-            BIG_DISPLAY_CARD("HC3"),
-            IMAGE_CARD("HC5"),
-            SMALL_CARD_WITH_ARROW("HC6"),
-        		DYNAMIC_WIDTH_CARD("HC9")
-        }
-        ```
-        
-        - `NOTE` : `HC9` is a special type of card, its width is not predefined. Its height is equal to height specified in its parent card group, and width is dynamic and depends on the size of the `bg_image` of the card.
-    - `name` - a name for the [card group](https://www.notion.so/c87138eb64b54c26a15755d57b8d7566) (for reference purpose only)
-    - `cards` - an array of [card](https://www.notion.so/c87138eb64b54c26a15755d57b8d7566) objects
-    - `height` - height of the included cards in "dp" **(only used for HC9)**
-    - `is_scrollable` - if this property is true, then the card group is shown as a horizontal scroll view. If this property is false, then all cards are accommodated into the screen width itself with equal width for each card. **(not used for HC9)**
+  <p align="center">
+  <img src = "screenshots/img_hc3_remind_later_pressed.png" width="200" height="400"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  </p>
+  
+* HC3 Dismiss now Pressed: On tapping "dismiss now" action, it should be removed from the display. This card should never be visible again.
 
-The API response gives you a list of **Card Group** objects.
+  <p align="center">
+  <img src = "screenshots/img_hc3_dismiss_now_pressed.png" width="200" height="400"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  </p>
+  
+* No Internet Error: 
 
-Ignore extra params that may come with the API response, that have not been defined here
+  <p align="center">
+  <img src = "screenshots/img_no_internet_error.png" width="200" height="400"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  </p>
 
-## Resources
-- API : [https://run.mocky.io/v3/04a04703-5557-4c84-a127-8c55335bb3b4](https://run.mocky.io/v3/04a04703-5557-4c84-a127-8c55335bb3b4)
-- Design: [https://www.figma.com/file/AvK2BRGwMTv4kQab5ymJ0K/AAL3-Android-assignment-Design-Specs](https://www.figma.com/file/AvK2BRGwMTv4kQab5ymJ0K/AAL3-Android-assignment-Design-Specs)
+## Sample Video
 
-# Submission **Instructions**
-- You may use kotlin or java, as you prefer
-    - **DO NOT USE** cross platform frameworks like flutter, react-native etc.
-- Submission should be a GitHub repo with a proper README with relevant instructions.
-    - Add the apk file in the repo itself.
-- Try and keep git commit messages clean.
-- Keep variable names relevant to what they are used for.
-- Follow indentation practices and keep code clean.
-- Add comments in code if something might be confusing for the person evaluating your code
+https://user-images.githubusercontent.com/87969632/186559356-e51d8c21-7eb3-4bf8-a5d1-1775e025de05.mp4
 
-**Feel free to ask any doubts!**
+## Current progress at the time of Submission
 
-## Best of Luck!
+All expected deliverables have been completed and no issue except text wrapping in one of the layout has been found as of yet.
+  
+## Code Structure
+
+The application is created mainly by keeping Clean Code MVVM Architecture into our point of vision.
+
+Different layers of the project: 
+
+- **Data layer:** The data layer is made of repositories that each can contain zero to many data sources. In our case we have only one data source.
+
+- **Domain layer:** This layer is responsible for connecting presentation layer with the data layer. It contains use usecases and repositories.
+
+- **Presentation layer:** The UI layer provides the UI implementation of the application. This layer internally implements MVVM (Model-View-ViewModel) architecture. It contains various fragments/activities, viewmodel and controller for the data.
+
+## Package Structure
+
+      com.example.fampayassignmentapp  # Root Package
+      
+      ├── commons                      # Contains common classes and util classes.
+      ├── data                         # For data handling.
+      │   ├── interceptor              # Contains header interceptor which intercepts retrofit calls and header.
+      │   ├── remote                   # It contains service class and response class
+      │   └── repository               # Defining the FampayRepo implementation class
+      |
+      ├── di                           # Dependency Injection module classes.  
+      |
+      ├── domain                       # Acts as an intermediator between presentation layer and data layer
+      │   ├── models                   # Contains model class required for inflating views.
+      │   ├── preferences              # Contains sharedPreferences implementation of remind me and dismiss card functionality.
+      │   ├── repository               # Defining interface for FampayRepo.
+      │   └── usecase                  # Contains get card group use case.
+      │
+      │
+      ├── presentation                 # Implements UI functionalities.
+      │   ├── home                     # Contains HomeFragment and HomeViewModel responsible for displaying content.
+      │   └── MainActivity             # MainActivity which contains HomeFragment.
+      |
+      └── MyApp                        # Application class for initialising application.
+      
+## Technologies and Libraries
+
+- [Kotlin](https://kotlinlang.org/) - Official programming language for Android development.
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps. Thus they help us to separate business logic apart from the UI logic and helps us in designing proper architecture.
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on configuration changes. 
+  - [DataBinding](https://developer.android.com/topic/libraries/data-binding) - The Data Binding Library is a support library that allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically.
+  - [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - View binding is a feature that allows you to more easily write code that interacts with views.
+- [Epoxy](https://github.com/airbnb/epoxy) - Epoxy is an Android library for building complex screens in a RecyclerView.
+- [Retrofit](https://square.github.io/retrofit/) - Retrofit is a type-safe HTTP client for Android and Java – developed by Square (Dagger, Okhttp).
+- [Glide](https://bumptech.github.io/glide/) - Glide is a fast and efficient image loading library for Android focused on smooth scrolling. Glide offers an easy to use API, a performant and extensible resource decoding pipeline and automatic resource pooling. 
+- [Dependency Injection](https://developer.android.com/training/dependency-injection) - 
+  - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project. 
+- [Swipe Refresh Layout](https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout) - Implement the swipe-to-refresh UI pattern.
+- [Lottie](https://github.com/airbnb/lottie-android) - Library that render After Effects animations
+
+## Built With
+
+* Android Studio
+
+## Author
+* <a href="https://github.com/aikansh2001yadav"> **Aikansh Yadav** </a>

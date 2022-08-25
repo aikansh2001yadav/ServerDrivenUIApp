@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="widthPx"
+            type="float" />
+
+        <variable
+            name="itemCount"
+            type="int" />
+
+        <variable
+            name="home"
+            type="com.example.fampayassignmentapp.presentation.home.HomeFragment" />
+
+        <variable
+            name="card"
+            type="com.example.fampayassignmentapp.domain.models.CardItem" />
+
+        <variable
+            name="viewModel"
+            type="com.example.fampayassignmentapp.presentation.home.HomeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_width="@{widthPx / itemCount}">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_outer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            card_view:cardBackgroundColor="@color/bg_screen"
+            card_view:cardCornerRadius="0dp"
+            card_view:cardElevation="0dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/item_hc3_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="12dp"
+                card_view:cardElevation="4dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/remind_later_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="80dp"
+                        android:backgroundTint="@color/white"
+                        android:onClick="@{() -> viewModel.onDismissOrRemindLater(false,card.name)}"
+                        android:src="@drawable/ic_remind_later"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/dismiss_now_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginBottom="80dp"
+                        android:backgroundTint="@color/white"
+                        android:onClick="@{() -> viewModel.onDismissOrRemindLater(true,card.name)}"
+                        android:src="@drawable/ic_dismiss"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/hc3_collapsable"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:onClick="@{() -> home.onCardClick(card.url, card.isDisabled)}"
+                        android:onLongClick="@{(view) -> home.onLongPressResize(view)}"
+                        app:backgroundCardColor="@{card.bgColor}"
+                        card_view:cardCornerRadius="12dp"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/bg_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:contentDescription="@string/bg_image"
+                                app:aspect_ratio="@{card.bgImage.aspectRatio}"
+                                app:imageURL="@{card.bgImage.imageUrl}"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintEnd_toEndOf="parent"
+                                card_view:layout_constraintHorizontal_bias="0.1"
+                                card_view:layout_constraintStart_toStartOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent"
+                                card_view:layout_constraintVertical_bias="0.1" />
+
+                            <TextView
+                                android:id="@+id/hc3_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ems="7"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold"
+                                app:entities="@{card.formattedContent.entities}"
+                                app:original_text="@{card.title}"
+                                app:home="@{home}"
+                                app:isDisabled="@{card.isDisabled}"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintEnd_toEndOf="@+id/bg_image"
+                                card_view:layout_constraintHorizontal_bias="0.4"
+                                card_view:layout_constraintStart_toStartOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/hc3_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ems="20"
+                                android:text="@{card.description}"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                app:entities="@{card.formattedDescription.entities}"
+                                app:original_text="@{card.description}"
+                                app:home="@{home}"
+                                app:isDisabled="@{card.isDisabled}"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintStart_toStartOf="@id/hc3_title"
+                                card_view:layout_constraintTop_toBottomOf="@id/hc3_title"
+                                card_view:layout_constraintVertical_bias="0.2" />
+
+
+                            <com.airbnb.epoxy.EpoxyRecyclerView
+                                android:id="@+id/epoxy_sub_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="25dp"
+                                app:home="@{home}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:listOfCTA="@{card.cta}"
+                                card_view:layout_constraintStart_toStartOf="parent"
+                                card_view:layout_constraintTop_toBottomOf="@id/hc3_description"
+                                card_view:layout_constraintVertical_bias="0.2"
+                                tools:listitem="@layout/layout_hc3_cta" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
