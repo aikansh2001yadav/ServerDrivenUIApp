@@ -37,7 +37,11 @@ Assignment for applications to Android Developer roles at FamPay. It uses clean 
 
 ## Sample Video
 
-https://user-images.githubusercontent.com/87969632/186559356-e51d8c21-7eb3-4bf8-a5d1-1775e025de05.mp4
+
+https://user-images.githubusercontent.com/87969632/186744794-9e2a2b4e-0dde-4110-8260-de1d9df9b1fe.mp4
+
+
+
 
 ## Current progress at the time of Submission
 
