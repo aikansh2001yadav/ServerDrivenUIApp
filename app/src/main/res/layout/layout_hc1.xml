@@ -95,7 +95,7 @@
                             android:fontFamily="@font/roboto_medium"
                             android:text="@{card.title}"
                             android:textColor="#000000"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             app:alignment="@{card.formattedContent.align}"
                             app:entities="@{card.formattedContent.entities}"
                             app:home="@{home}"
@@ -109,7 +109,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="@{card.name}"
                             android:textColor="#B91B1B1E"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
 
                             />
                     </LinearLayout>
