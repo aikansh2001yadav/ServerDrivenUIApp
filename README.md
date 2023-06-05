@@ -1,7 +1,7 @@
-# FampayAssignmentApp
+# Server Driven Ui App
 ## Description
 
-Assignment for applications to Android Developer roles at FamPay. It uses clean MVVM Architecture with modern libraries like epoxy, retrofit, glide, hilt and lottie. Dynamic view are inflated using epoxy recycler view with databinding enabled. Network calls are made using retrofit library. Glide is used for image loading. Hilt is used for dependency injection and lottie is used for animation.
+This app uses server driven approach for its UI implementation. It means UI implementation is not stored on android source code but rather received dynamically from backend. It uses clean MVVM Architecture with modern libraries like epoxy, retrofit, glide, hilt and lottie. Dynamic view are inflated using epoxy recycler view with databinding enabled. Network calls are made using retrofit library. Glide is used for image loading. Hilt is used for dependency injection and lottie is used for animation. The app follows Airbnb's server driven UI approach for different platforms.
 
 ## Application Screenshots
 
