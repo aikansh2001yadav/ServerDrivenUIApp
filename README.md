@@ -37,8 +37,7 @@ This app uses server driven approach for its UI implementation. It means UI impl
 
 ## Sample Video
 
-[
-https://user-images.githubusercontent.com/87969632/186744794-9e2a2b4e-0dde-4110-8260-de1d9df9b1fe.mp4](https://user-images.githubusercontent.com/87969632/186744794-9e2a2b4e-0dde-4110-8260-de1d9df9b1fe.mp4)
+https://user-images.githubusercontent.com/87969632/186744794-9e2a2b4e-0dde-4110-8260-de1d9df9b1fe.mp4
 
 
 
