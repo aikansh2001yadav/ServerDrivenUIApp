@@ -23,7 +23,7 @@ This app uses server driven approach for its UI implementation. It means UI impl
   <img src = "screenshots/img_hc3_remind_later_pressed.png" width="200" height="400"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
   </p>
   
-* HC3 Dismiss now Pressed: On tapping "dismiss now" action, it should be removed from the display. This card should never be visible again.
+* HC3 Dismiss now Pressed: On tapping "dismiss now" action, it should be removed from the display. This card should never be visible again. file:///home/aikansh_yadav/Downloads/server_driven_ui_app.mov
 
   <p align="center">
   <img src = "screenshots/img_hc3_dismiss_now_pressed.png" width="200" height="400"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
