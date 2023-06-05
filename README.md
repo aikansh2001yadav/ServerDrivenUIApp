@@ -34,17 +34,15 @@ This app uses server driven approach for its UI implementation. It means UI impl
   <p align="center">
   <img src = "screenshots/img_no_internet_error.png" width="200" height="400"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
   </p>
+  
+ ## UI in form of JSON data
+
+![image](https://github.com/aikansh2001yadav/ServerDrivenUIApp/assets/87969632/6d69845e-de58-4b80-a285-83a39814b8c4)
+
 
 ## Sample Video
 
-https://user-images.githubusercontent.com/87969632/186744794-9e2a2b4e-0dde-4110-8260-de1d9df9b1fe.mp4
-
-
-
-
-## Current progress at the time of Submission
-
-All expected deliverables have been completed and no issue except text wrapping in one of the layout has been found as of yet.
+[App Sample Video](https://drive.google.com/file/d/1EqWmoZjw_58IJu3UHU7vyulid-REnznQ/view?usp=sharing)
   
 ## Code Structure
 
